@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/title_css.css" type="text/css">
+    <link rel="stylesheet" href="css/form_css.css" type="text/css">
+    <link rel="stylesheet" href="css/table_css.css" type="text/css">
+    <title>Student Info</title>
+</head>
+
+<body style="background-image: url('/imgs/table_bg.jpg'); background-attachment: fixed;">
+    <!--Nav bar-->
+    <%- include('../partials/header_log.ejs') %>
+
+        <% if(data.results.length> 0) { %>
+            <div class="tbl s_tbl">
+                <table>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Middle Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Email Address
+                    </th>
+                    <th>
+                        Salary
+                    </th>
+                    <th>
+                        Street
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        PINCODE
+                    </th>
+                    <% data.results.forEach(element=> {%>
+                        <tr>
+                            <td>
+                                <%= element.employee_id %>
+                            </td>
+                            <td>
+                                <%= element.employee_fname %>
+                            </td>
+                            <td>
+                                <%= element.employee_mname %>
+                            </td>
+                            <td>
+                                <%= element.employee_lname %>
+                            </td>
+                            <td>
+                                <%= element.employee_email %>
+                            </td>
+                            <td>
+                                <%= element.salary %>
+                            </td>
+                            <td>
+                                <%= element.street %>
+                            </td>
+                            <td>
+                                <%= element.city %>
+                            </td>
+                            <td>
+                                <%= element.pincode %>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </table>
+                <div class="btn">
+                    <% if(data.prev) {%>
+                        <div class="prev bt">
+                            <% var str = `all_employees?page=${data.prev.page}&limit=${data.prev.limit}` %>
+                            <a href= <%=str%> > << PREV</a>
+                        </div>
+                    <% } %>
+                    <% if(data.next) { %>
+                        <div class="next bt">
+                            <% var str = `all_employees?page=${data.next.page}&limit=${data.next.limit}` %>
+                            <a href= <%=str%> >NEXT >> </a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+
+
+</body>
+
+</html>

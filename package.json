@@ -19,5 +19,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrishPatel10/universityManagement.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KrishPatel10/universityManagement/issues"
+  },
+  "homepage": "https://github.com/KrishPatel10/universityManagement#readme",
   "description": ""
 }
