@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/title_css.css" type="text/css">
+    <link rel="stylesheet" href="css/btn_css.css" type="text/css">
+    <link rel="stylesheet" href="css/choice_css.css" type="text/css">
+    <title>Admin Options</title>
+</head>
+<body>
+    <!--Nav bar-->
+    <%- include('../partials/header_log.ejs') %>
+    <!--Form-->
+
+    <div class = "choice_div">
+        <div class="choice_title">
+            <h2>
+                Select  Option
+            </h2>
+        </div>
+        <hr class="hr_choice">
+        <h3>
+            <a href="/all_students?page=1&limit=20" class="link">
+                List of Students
+            </a>
+        </h3>
+        <h3>
+            <a href="/all_employees?page=1&limit=20" class="link">
+                List of Employees
+            </a>
+        </h3>
+        <h3>
+            <a href="/s_signin_basic" class="link">
+                Create New Student Account
+            </a>
+        </h3>
+        <h3>
+            <a href="/i_signin_basic" class="link">
+                Create New Employee Account
+            </a>
+        </h3>
+    </div>
+</body>
+</html>

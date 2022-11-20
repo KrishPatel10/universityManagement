@@ -1,0 +1,39 @@
+.choice_title{
+    font-size: 30px;
+    margin-bottom: 10%;
+}
+
+.link{
+    color: white;
+    transition: color 0.3s ease 0s;
+}
+
+h2{
+    padding-inline: 10%;
+}
+
+.link:hover{
+    color: #35c3e6;
+}
+
+.choice_div{
+    background: rgb(35, 31, 36);
+    width: 40%;
+    height: 70%;
+    margin-left: 30%;
+    margin-top: 7%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: whitesmoke;
+    border-radius: 3%;
+}
+
+
+.hr_choice{
+    background: #ffffff;
+    width:75%;
+}
+
