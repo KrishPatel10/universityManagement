@@ -1,0 +1,44 @@
+.bx {
+    background: rgb(35, 31, 36);
+    width: 30%;
+    height: 70%;
+    margin-left: 40%;
+    margin-top:10%;
+    padding-bottom: 3%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: whitesmoke;
+    border-radius: 3%;
+}
+
+.lbl{
+    padding-top: 20px;
+}
+
+.hr_title {
+    width: 75%;
+    color: aliceblue;
+    margin-bottom: 3%;
+}
+
+.title_box {
+    margin-top: 5%;
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+.l_btn {
+    background: white;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    border-radius: 5%;
+}
+
+.l_btn:hover {
+    background: rgb(43, 217, 226);
+}

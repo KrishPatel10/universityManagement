@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/title_css.css" type="text/css">
+    <link rel="stylesheet" href="css/form_css.css" type="text/css">
+    <link rel="stylesheet" href="css/btn_css.css" type="text/css">
+    <title>Student Address Info</title>
+</head>
+<body>
+    <!--Nav bar-->
+    <%- include('../partials/header_log.ejs') %>
+    <!--Form-->
+
+    <div class = "Form_Div">
+        <div class="form_title">Personal Info</div>
+        <hr class="hr_form">
+        <form id="insert_form" class="insrt_form">
+            <!--dob-->
+            <label for = "dob" class="form_text">
+                    Date Of Birth
+            </label>
+            <br>
+            <input type="date" class="dob_ip ip" min="1995-01-01" max="2022-12-31" >
+            <br>
+
+
+            <!--weight-->
+            <label for = "wgt" class="form_text">
+                Weight
+            </label>
+            <br>
+            <input type="number" class="wgt_ip ip">
+            <br>
+
+            <!--height-->
+
+            <label for = "hgt" class="form_text">
+                Height
+            </label>
+            <br>
+            <input type="text" class="hgt_ip ip">
+            <br>
+
+            <!--CPI-->
+
+            <label for = "cpi" class="form_text">
+                Student's CPI
+            </label>
+            <br>
+            <input type="text" class="cpi_ip ip">
+            <br>
+
+            <!--Street-->
+
+            <label for = "street" class="form_text">
+                    Street
+            </label>
+            <br>
+            <input type="text" class="strt_ip ip">
+            <br>
+
+            <!--City-->
+
+            <label for = "city" class="form_text">
+                    City
+            </label>
+            <br>
+            <input type="text" class="email_ip ip">
+            </br>
+
+            <!--PINCODE-->
+            <label for = "pin" class="form_text">
+                PIN Code
+            </label>
+            <br>
+            <input type="number" class="pin_ip ip">
+            </br>
+
+            <!--btns-->
+            <button class="btn bck_btn">
+                <a href="s_signin_basic" class="btn">Back</a>
+            </button>
+            <button class="btn submit_btn">
+                Submit
+            </button>
+
+        </form>
+    </div>
+</body>
+</html>

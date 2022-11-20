@@ -1,0 +1,19 @@
+
+.submit_btn{
+    background-color: rgb(41, 218, 41);
+    color:white;
+    padding: 2% 5% 2% 5%;
+    border-radius: 20%;
+}
+
+.bck_btn{
+    margin-block-start: 5%;
+    background-color: rgb(18, 5, 255);
+    color:white;
+    padding: 2% 5% 2% 5%;
+    border-radius: 20%;
+}
+
+.btn{
+    border: #0080ff 2%;
+}

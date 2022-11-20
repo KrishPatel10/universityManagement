@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/title_css.css" type="text/css">
+    <link rel="stylesheet" href="css/form_css.css" type="text/css">
+    <link rel="stylesheet" href="css/btn_css.css" type="text/css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../partials/header_log.ejs') %>
+
+    <div class="Form_Div">
+        <div class="form_title">Basic Info</div>
+        <hr class="hr_form">
+        <form id="insert_form" class="insrt_form">
+            <!--First Name-->
+            <label for="fname" class="form_text">
+                Student's First Name
+            </label>
+            <br>
+            <input type="text" class="fname_ip ip">
+            <br>
+
+            <!--Middle Name-->
+
+            <label for="mname" class="form_text">
+                Student's Middle Name
+            </label>
+            <br>
+            <input type="text" class="mname_ip ip">
+            <br>
+            <!--Last Name-->
+
+            <label for="lname" class="form_text">
+                Student's Last Name
+            </label>
+            <br>
+            <input type="text" class="lname_ip ip">
+            <br>
+            <!--Student PhoneNo.-->
+
+            <label for="phone" class="form_text">
+                Student's PhoneNo
+            </label>
+            <br>
+            <input type="text" class="phn_ip ip">
+            <br>
+            <!--Student Email-->
+
+            <label for="email" class="form_text">
+                Student's Email Address
+            </label>
+            <br>
+            <input type="text" class="email_ip ip">
+            <br>
+
+            <!--Student Passwd-->
+            <label for="passwd" class="form_text">
+                    Create Password
+            </label>
+            <br>
+            <input type="password" class="passwd_ip ip">
+            <br>
+    
+            
+
+            <button class="btn submit_btn">
+                <a href="s_signin_address" class="btn">Next</a>
+            </button>
+
+
+        </form>
+    </div>
+</body>
+
+</html>

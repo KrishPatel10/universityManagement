@@ -1,0 +1,62 @@
+
+.form_title{
+    font-size: 30px;
+    margin-bottom: 10%;
+}
+
+.Form_Div{
+    background: rgb(35, 31, 36);
+    width: 30%;
+    height: 70%;
+    margin-left: 40%;
+    margin-top: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: whitesmoke;
+    border-radius: 3%;
+}
+
+.hr_form{
+    background: #ffffff;
+    width:75%;
+}
+
+.insrt_form{
+    width: 100%;
+}
+
+.ip{
+    margin: auto;
+    border: #35aae0;
+}
+
+.form_text{
+    margin:auto;
+}
+
+.ip:focus {
+    border: 3px solid #555;
+}
+
+input[type="date"]{
+    background-color: #0080ff;
+    padding: 5px;
+    top: 50%;
+    left: 50%;
+    font-family: "Roboto Mono",monospace;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+::-webkit-calendar-picker-indicator{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}

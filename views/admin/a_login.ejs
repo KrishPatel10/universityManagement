@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/title_css.css" type="text/css">
+    <link rel="stylesheet" href="css/login_css.css" type="text/css">
+    <link rel="stylesheet" href="css/btn_css.css" type="text/css">
+    <title>Admin Login</title>
+</head>
+<body>
+    <!--Nav bar-->
+    <%- include('../partials/header_def.ejs') %>
+
+    <!--Options-->
+
+    <div class="main_div bx"> 
+        <form action="/a_login" method="POST" id="insert_form" class="insrt_form">
+            <div class = "title_box">
+                <div class="title_text">
+                    <h2>
+                        Login As Admin
+                    </h2>
+                </div>
+            </div>
+    
+            <hr class="hr_title">
+    
+            <div class="lbl lbl_txt">
+                <label for="admin_passwd" class="txt_lbl">
+                    Admin Password
+                </label>
+                <br>
+                <input type="password" aria-describedby="a_passwd" name= "a_passwd" class="ip a_passwd_ip" id="a_passwd" required>
+            </div>
+    
+            <button class="btn submit_btn" type="submit" onclick="myFunction();">
+                Log-In
+            </button>
+    
+        </form>
+    </div>
+    
+    
+</body>
+</html>
+
+<script>
+    function myFunction() {
+        document.getElementById("insert_form").submit();
+    }
+</script>
