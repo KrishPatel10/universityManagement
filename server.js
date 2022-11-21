@@ -139,7 +139,6 @@ app.get('/a_login', (req, res) => {
 
 //admn login page post method
 app.post('/a_login', (req, res) => {
-    console.log(req.body);
     if (req.body.a_passwd == "admin") {
         res.status(304).redirect('/a_choice');
     } else {
@@ -246,5 +245,76 @@ app.post('/s_signin', async(req,res) => {
         console.error(err.message);
     }
 });
+
+//student login 
+
+//student login
+app.post('/s_login', async (req, res) => {
+    try {
+        const allstd = await pool.query(`SELECT * FROM pms2.student_info WHERE student_id = ${req.body.s_id}`);
+
+        if (allstd.rows.length > 0) {
+            allstd.rows[0].date_of_birth = (allstd.rows[0].date_of_birth).toISOString().slice(0,10);
+            if (req.body.s_passwd == allstd.rows[0].student_login_password) {
+                res.status(200).render('student/s_info.ejs', {data: allstd.rows[0]});
+            } else {
+                res.status(404).send("Wrong Pass");
+            }
+        } else {
+            res.status(404).send("User ID not found");
+        }
+    } catch (err) {
+        console.error(err.message);
+    }
+});//done
+
+//edit student for student
+app.get('/s_edit',async (req, res) => {
+    try {
+        const allstd = await pool.query(`SELECT * FROM pms2.student_info WHERE student_id = ${req.query.id}`);
+        console.log(1);
+        console.log(allstd.rows);
+        console.log(2);
+
+        if (allstd.rows.length > 0) {
+            allstd.rows[0].date_of_birth = (allstd.rows[0].date_of_birth).toISOString().slice(0,10);
+            res.status(200).render('student/s_edit.ejs', {data: allstd.rows[0]});
+        }else {
+            res.status(404).send("User ID not found");
+        }
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.post('/s_edit', async(req,res) => {
+    try {
+        const qury = `UPDATE pms2.Student_info 
+        SET student_email = $1, 
+        street = $2, 
+        city = $3, 
+        pincode=$4 
+        WHERE student_id=$5`;
+        await pool.query(qury, [req.body.email, req.body.street, req.body.city, req.body.pincode, req.body.id]);
+        const allstd = await pool.query(`SELECT * FROM pms2.student_info WHERE student_id=${req.body.id}`);
+        allstd.rows[0].date_of_birth = (allstd.rows[0].date_of_birth).toISOString().slice(0,10);
+        res.status(200).render('student/s_info.ejs', {data: allstd.rows[0]});
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.post('/delete_student', async (req, res)=>{
+    try {
+        console.log(req.body);
+        const qury = `DELETE FROM pms2.student_info WHERE student_id = $1`;
+        await pool.query(qury, [req.body.id]);
+        await pool.query(`DELETE FROM pms2.student_phoneno WHERE student_id=${req.body.id}`);
+        res.status(304).redirect('/home');
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 
 app.listen(5000);

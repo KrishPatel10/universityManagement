@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/info_css.css" type="text/css">
+    <link rel="stylesheet" href="css/btn_css.css" type="text/css">
+    <title>
+        <%= data.student_fname %> Info
+    </title>
+</head>
+
+<body>
+    <!--Nav bar-->
+    <%- include('../partials/header_log.ejs') %>
+
+        <!--Options-->
+
+        <div class="main_div bx">
+            <div class="details">
+                <div class="title">
+                    <%= data.student_fname %>'s Information
+                </div>
+                <form action="/s_edit" method="post" id="insert_form" class="frm">
+
+                    <table>
+                        <tr>
+                            <td class="ip">
+                                Student ID
+                            </td>
+                            <td class="op">
+                                <input type="text" id="id" name="id" value="<%= data.student_id %>" readonly>
+                            </td>
+                        </tr>
+                        <!--Fname-->
+                        <tr>
+    
+                            <td class="ip">
+                                First Name
+                            </td>
+    
+    
+                            <td class="op">
+                                <input type="text" id="fname" name="fname" value="<%= data.student_fname %>" readonly>
+                            </td>
+    
+                        </tr>
+    
+                        <!--Mname-->
+                        <tr>
+    
+                            <td class="ip">
+                                Middle Name
+                            </td>
+    
+    
+                            <td class="op">
+                                <input type="text" id="mname" name="mname" value="<%= data.student_mname %>" readonly>
+                            </td>
+    
+                        </tr>
+    
+                        <!--Lname-->
+                        <tr>
+    
+                            <td class="ip">
+                                Last Name
+                            </td>
+    
+    
+                            <td class="op">
+                                <input type="text" id="lname" name="lname" value="<%= data.student_lname %>" readonly>
+                            </td>
+    
+                        </tr>
+    
+                        <!--email-->
+                        <tr>
+    
+                            <td class="ip">
+                                Email
+                            </td>
+    
+    
+                            <td class="op">
+                                <input type="text" value=" <%= data.student_email %>" name="email" id="email_ip" class="ip email_ip" required>                            
+                            </td>
+    
+                        </tr>
+    
+                        <!--cpi-->
+                        <tr>
+
+                            <td class="ip">
+                                CPI
+                            </td>
+
+
+                            <td class="op">
+                                <input type="text" id="CPI" name="CPI" value="<%= data.cpi %>" readonly>
+                            </td>
+
+                        </tr>
+
+                        <!--weight-->
+                        <tr>
+
+                            <td class="ip">
+                                Weight
+                            </td>
+
+
+                            <td class="op">
+                                <input type="text" id="weight" name="weight" value="<%= data.weight %>" readonly>
+                            </td>
+
+                        </tr>
+
+                        <!--height-->
+                        <tr>
+
+                            <td class="ip">
+                                Height
+                            </td>
+
+
+                            <td class="op">
+                                <input type="text" id="height" name="height" value="<%= data.height %>" readonly>
+                            </td>
+
+                        </tr>
+
+                    <!--DOB-->
+                    <tr>
+
+                        <td class="ip">
+                            Date Of Birth
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="dob" name="dob" value="<%= data.date_of_birth %>" readonly>
+                        </td>
+
+                    </tr>
+
+    
+                        <!--Street-->
+                        <tr>
+    
+                            <td class="ip">
+                                Street
+                            </td>
+    
+    
+                            <td class="op">
+                                <input type="text" value="<%= data.street %>" name="street" id="street_ip" class="street_ip" required>    
+                        </tr>
+    
+                        <!--City-->
+                        <tr>
+    
+                            <td class="ip">
+                                City
+                            </td>
+    
+    
+                            <td class="op">
+                                <input type="text" value=" <%= data.city %>" name="city" id="city_ip" class="ip city_ip" required> 
+                            </td>
+    
+                        </tr>
+    
+                        <!--PIN-->
+                        <tr>
+    
+                            <td class="ip">
+                                PINCODE
+                            </td>
+    
+    
+                            <td class="op">
+                                <input type="text" value=" <%= data.pincode %>" name="pincode" id="pincode_ip" class="ip pincode_ip" required> 
+                            </td>
+    
+                        </tr>
+    
+                    </table>
+
+                </form>
+                
+                <div class="btns">
+                    <button type="submit" class="edit_btn" onclick="myFunc();">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
+
+<script>
+    function myFunc(){
+        document.getElementById('insert_form').submit();
+    }
+</script>

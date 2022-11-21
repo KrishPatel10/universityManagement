@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,46 +11,53 @@
     <link rel="stylesheet" href="css/btn_css.css" type="text/css">
     <title>Student Login</title>
 </head>
+
 <body>
     <!--Nav bar-->
     <%- include('../partials/header_def.ejs') %>
 
-    <!--Options-->
+        <!--Options-->
+        <div class="main_div bx">
+            <form action="/s_login" method="post" id="insert_form" class="insrt_form">
+                <div class="title_box">
+                    <div class="title_text">
+                        <h2>
+                            Login As Student
+                        </h2>
+                    </div>
+                </div>
 
-    <div class="main_div bx">
-        <div class = "title_box">
-            <div class="title_text">
-                <h2>
-                    Login As Student
-                </h2>
+                <hr class="hr_title">
+
+                <div class="lbl lbl_txt">
+                    <label for="student_id" class="txt_lbl">
+                        Student ID
+                    </label>
+                    <br>
+                    <input type="number" class="ip s_id_ip" name="s_id" id="s_id">
+
+                </div>
+
+                <div class="lbl lbl_txt">
+                    <label for="student_passwd" class="txt_lbl">
+                        Student Password
+                    </label>
+                    <br>
+                    <input type="password" class="ip s_passwd_ip" name="s_passwd" id="s_passwd">
+                </div>
+
+                <button class="btn submit_btn">
+                    Log-In
+                </button>
+            </form>
             </div>
-        </div>
 
-        <hr class="hr_title">
-
-        <div class="lbl lbl_txt">
-            <label for="student_id" class="txt_lbl">
-                Student ID
-            </label>
-            <br>
-            <input type="number" class="ip s_id_ip"id="s_id">
-
-        </div>
-
-        <div class="lbl lbl_txt">
-            <label for="student_passwd" class="txt_lbl">
-                Student Password
-            </label>
-            <br>
-            <input type="password" class="ip s_passwd_ip" id="s_passwd">
-        </div>
-
-        <button class="btn submit_btn">
-            <a href="#">Log-In</a>
-        </button>
-
-    </div>
-    
-    
 </body>
+
 </html>
+
+<script>
+    function myFunction() {
+        document.getElementById("insert_form").submit();
+    }
+</script>
