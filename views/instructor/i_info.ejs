@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/info_css.css" type="text/css">
+    <link rel="stylesheet" href="css/btn_css.css" type="text/css">
+    <title>
+        <%= data.employee_fname %> Info
+    </title>
+    <% console.log(data); %>
+</head>
+
+<body>
+    <!--Nav bar-->
+    <%- include('../partials/header_log.ejs') %>
+
+        <!--Options-->
+
+        <div class="main_div bx">
+            <div class="details">
+                <div class="title">
+                    <%= data.employee_fname %>'s Information
+                </div>
+                <table>
+                    <tr>
+                        <td class="ip">
+                            Employee ID
+                        </td>
+                        <td class="op">
+                            <input type="text" id="id" name="id" value="<%= data.employee_id %>" readonly>
+                        </td>
+                    </tr>
+                    <!--Fname-->
+                    <tr>
+
+                        <td class="ip">
+                            First Name
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="fname" name="fname" value="<%= data.employee_fname %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--Mname-->
+                    <tr>
+
+                        <td class="ip">
+                            Middle Name
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="mname" name="mname" value="<%= data.employee_mname %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--Lname-->
+                    <tr>
+
+                        <td class="ip">
+                            Last Name
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="lname" name="lname" value="<%= data.employee_lname %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--email-->
+                    <tr>
+
+                        <td class="ip">
+                            Email
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="email" name="email" value="<%= data.employee_email %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--Salary-->
+                    <tr>
+
+                        <td class="ip">
+                            Salary
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="salary" name="salary" value="<%= data.salary %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--Joining Date-->
+                    <tr>
+
+                        <td class="ip">
+                            Joining Date
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="jd" name="jd" value="<%= data.joining_date %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--DOB-->
+                    <tr>
+
+                        <td class="ip">
+                            Date Of Birth
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="dob" name="dob" value="<%= data.date_of_birth %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--Street-->
+                    <tr>
+
+                        <td class="ip">
+                            Street
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="street" name="street" value="<%= data.street %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--City-->
+                    <tr>
+
+                        <td class="ip">
+                            City
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="city" name="city" value="<%= data.city %>" readonly>
+                        </td>
+
+                    </tr>
+
+                    <!--PIN-->
+                    <tr>
+
+                        <td class="ip">
+                            PINCODE
+                        </td>
+
+
+                        <td class="op">
+                            <input type="text" id="pin" name="pin" value="<%= data.pincode %>" readonly>
+                        </td>
+
+                    </tr>
+
+                </table>
+                <div class="btns">
+                    <button type="submit" class="edit_btn" onclick="location.href='/i_edit?id=<%= data.employee_id %>'">
+                        EDIT
+                    </button>
+                    <button type="submit" class="delete_btn">
+                        DELETE
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

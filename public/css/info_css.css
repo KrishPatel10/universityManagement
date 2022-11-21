@@ -1,0 +1,69 @@
+.op{
+    margin-top: 17px;
+    width: 50%;
+    color:rgb(196, 196, 196);
+}
+
+.ip{
+    width: 40%;
+}
+
+.title{
+    font-size: larger;
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+.bx {
+    background: rgb(35, 31, 36);
+    width: 30%;
+    height: 70%;
+    margin-left: 40%;
+    margin-top:10%;
+    padding-bottom: 3%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: whitesmoke;
+    border-radius: 3%;
+}
+
+table, th, td{
+    border: 1px solid rgb(255, 255, 255);
+    border-collapse: collapse;
+}
+
+table{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    backdrop-filter: blur(30px);
+    padding: 2%;
+    color:white;
+    width:96%;
+}
+
+.details{
+    padding-top:1% ;
+}
+
+.edit_btn{
+    background-color: rgb(0, 166, 111);
+    border-radius: 15%;
+    padding:2% 5% 2% 5%;
+}
+
+.delete_btn{
+    background-color: rgb(255, 0, 0);
+    border-radius: 15%;
+    padding:2% 5% 2% 5%;
+}
+
+input[type=text]{
+    width: 90%;
+    margin-bottom: 2%;
+}
+
+textarea{
+    width:90%;
+}

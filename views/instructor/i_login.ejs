@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,46 +11,56 @@
     <link rel="stylesheet" href="css/btn_css.css" type="text/css">
     <title>Instructor Login</title>
 </head>
+
 <body>
     <!--Nav bar-->
     <%- include('../partials/header_def.ejs') %>
 
-    <!--Options-->
+        <!--Options-->
 
-    <div class="main_div bx">
-        <div class = "title_box">
-            <div class="title_text">
-                <h2>
-                    Login As Instructor
-                </h2>
-            </div>
+        <div class="main_div bx">
+            <form action="/i_login" method="POST" id="insert_form" class="insrt_form">
+                <div class="title_box">
+                    <div class="title_text">
+                        <h2>
+                            Login As Instructor
+                        </h2>
+                    </div>
+                </div>
+
+                <hr class="hr_title">
+
+                <div class="lbl lbl_txt">
+                    <label for="instrctr_id" class="txt_lbl">
+                        Instructor ID
+                    </label>
+                    <br>
+                    <input type="number" class="ip i_id_ip" id="i_id" name="i_id" required>
+
+                </div>
+
+                <div class="lbl lbl_txt">
+                    <label for="instrctr_passwd" class="txt_lbl">
+                        Instructor Password
+                    </label>
+                    <br>
+                    <input type="password" class="ip i_passwd_ip" id="i_passwd" name="i_passwd" required>
+                </div>
+
+                <button type="submit" class="btn submit_btn" onclick="myFunction();">
+                    Log-In
+                </button>
+            </form>
+
         </div>
 
-        <hr class="hr_title">
 
-        <div class="lbl lbl_txt">
-            <label for="instrctr_id" class="txt_lbl">
-                Instructor ID
-            </label>
-            <br>
-            <input type="number" class="ip i_id_ip"id="i_id">
-
-        </div>
-
-        <div class="lbl lbl_txt">
-            <label for="instrctr_passwd" class="txt_lbl">
-                Instructor Password
-            </label>
-            <br>
-            <input type="password" class="ip i_passwd_ip" id="i_passwd">
-        </div>
-
-        <button class="btn submit_btn">
-            <a href="#">Log-In</a>
-        </button>
-
-    </div>
-    
-    
 </body>
+
 </html>
+
+<script>
+    function myFunction() {
+        document.getElementById("insert_form").submit();
+    }
+</script>
