@@ -209,4 +209,42 @@ app.post('/i_edit', async(req,res) => {
     }
 });
 
+app.post('/delete_employee', async (req, res)=>{
+    try {
+        console.log(req.body);
+        const qury = `DELETE FROM pms2.employee_info WHERE employee_id = $1`;
+        await pool.query(qury, [req.body.id]);
+        await pool.query(`DELETE FROM pms2.employee_phoneno WHERE employee_id=${req.body.id}`);
+        res.status(304).redirect('/home');
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.post('/i_signin', async(req,res) => {
+    try {
+        var len1 = await pool.query(`SELECT max(employee_id) FROM pms2.employee_info;`)
+        len1 = parseInt(len1.rows[0].max);
+        const qury = `INSERT INTO pms2.employee_info(employee_id, employee_fname, employee_mname, employee_lname, employee_email, employee_login_password, joining_date, salary, date_of_birth, street, city, pincode) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`;
+        await pool.query(`INSERT INTO pms2.employee_info VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12);`, [len1+parseInt(1), req.body.fname, req.body.mname, req.body.lname, req.body.email, req.body.passwd, req.body.jd, req.body.salary, req.body.dob, req.body.street, req.body.city, req.body.pin])
+        await pool.query(`INSERT INTO pms2.employee_phoneno VALUES($1, $2);`,[len1+1, req.body.phone]);
+        res.status(304).redirect('/home');
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.post('/s_signin', async(req,res) => {
+    try {
+        var len1 = await pool.query(`SELECT max(student_id) FROM pms2.student_info;`)
+        len1 = parseInt(len1.rows[0].max);
+        const qury = `INSERT INTO pms2.student_info VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13);`;
+        await pool.query(qury, [len1+parseInt(1), req.body.fname, req.body.mname, req.body.lname, req.body.email, req.body.passwd, req.body.cpi, req.body.weight, req.body.height, req.body.dob, req.body.street, req.body.city, req.body.pin]);
+        //await pool.query(`INSERT INTO pms2.student_phoneno VALUES($1, $2);`,[len1+parseInt(1), req.body.phone]);
+        res.status(304).redirect('/home');
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 app.listen(5000);

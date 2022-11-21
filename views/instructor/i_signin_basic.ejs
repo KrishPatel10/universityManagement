@@ -18,13 +18,13 @@
     <div class="Form_Div">
         <div class="form_title">Basic Info</div>
         <hr class="hr_form">
-        <form id="insert_form" class="insrt_form">
+        <form action="/i_signin" method="post" id="insert_form" class="insrt_form">
             <!--First Name-->
             <label for="fname" class="form_text">
                 Instructor's First Name
             </label>
             <br>
-            <input type="text" class="fname_ip ip">
+            <input type="text" class="fname_ip ip" name="fname" id="fname" required>
             <br>
 
             <!--Middle Name-->
@@ -33,7 +33,7 @@
                 Insstructor's Middle Name
             </label>
             <br>
-            <input type="text" class="mname_ip ip">
+            <input type="text" class="mname_ip ip" name="mname" id="mname" required>
             <br>
             <!--Last Name-->
 
@@ -41,7 +41,7 @@
                 Instructor's Last Name
             </label>
             <br>
-            <input type="text" class="lname_ip ip">
+            <input type="text" class="lname_ip ip"  name="lname" id="lname" required>
             <br>
             <!--Student PhoneNo.-->
 
@@ -49,7 +49,7 @@
                 Instructor's PhoneNo
             </label>
             <br>
-            <input type="text" class="phn_ip ip">
+            <input type="text" class="phn_ip ip" name="phone" id="phone" required>
             <br>
             <!--Student Email-->
 
@@ -57,7 +57,7 @@
                 Instructor's Email Address
             </label>
             <br>
-            <input type="text" class="email_ip ip">
+            <input type="text" class="email_ip ip" name="email" id="email" required>
             <br>
 
             <!--Student Passwd-->
@@ -65,13 +65,62 @@
                     Create Password
             </label>
             <br>
-            <input type="password" class="passwd_ip ip">
+            <input type="password" class="passwd_ip ip"  name="passwd" id="passwd" required>
             <br>
+
+            <label for = "dob" class="form_text">
+                Date Of Birth
+        </label>
+        <br>
+        <input type="date" class="dob_ip ip" min="1995-01-01" max="2022-12-31" name="dob" id="dob" required>
+        <br>
+
+
+        <label for = "joining_date" class="form_text">
+            Joining Date
+        </label>
+        <br>
+        <input type="date" class="jd_ip ip" min="1995-01-01" max="2022-12-31" name="jd" id="jd" required>
+        <br>
+            <!--salary-->
+
+        <label for = "salary" class="form_text">
+            Salary
+        </label>
+        <br>
+        <input type="number" class="salary_ip ip" min="1000" max="100000" name="salary" id="salary" required>
+        <br>
+
+        <!--Street-->
+
+        <label for = "street" class="form_text">
+                Street
+        </label>
+        <br>
+        <input type="text" class="strt_ip ip" name="street" id="street" required>
+        <br>
+
+        <!--City-->
+
+        <label for = "city" class="form_text">
+                City
+        </label>
+        <br>
+        <input type="text" class="city_ip ip" name="city" id="city" required>
+        </br>
+
+        <!--PINCODE-->
+        <label for = "pin" class="form_text">
+            PIN Code
+        </label>
+        <br>
+        <input type="number" class="pin_ip ip" name="pin" id="pin" required>
+        </br>
     
             
 
-            <button class="btn submit_btn">
-                <a href="i_signin_address" class="btn">Next</a>
+            <button class="btn submit_btn" onclick="myFunc();">
+                Next
             </button>
 
 
@@ -80,3 +129,9 @@
 </body>
 
 </html>
+
+<script>
+    function myFunc(){
+        document.getElementById("insert_form").submit();
+    }
+</script>
