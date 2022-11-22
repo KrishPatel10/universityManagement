@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/info_css.css" type="text/css">
+    <link rel="stylesheet" href="css/btn_css.css" type="text/css">
+    <link rel="stylesheet" href="css/form_css.css" type="text/css">
+    <title>
+        Custom Query
+    </title>
+</head>
+
+<body>
+    <!--Nav bar-->
+    <%- include('../partials/header_log.ejs') %>
+
+        <!--Options-->
+
+        <div class="main_div bx">
+            <div class="details">
+                <div class="title">
+                    <h2>
+                        Create Custom Query
+                    </h2>
+                </div>
+                <hr class="hr_form">
+                <form action="/custom" id="insert_form" method="post">
+                    <div class="query input">
+                        <div class="txt">
+                            <h3>
+                                Write Your Query Below
+                            </h3>
+                        </div>
+                        <textarea class="ip txt_ip" name="qury" id="qury" style="text-align: left;width:80%;" required>
+                        </textarea> 
+                    </div>
+                    <div class="btns">
+                        <button type="submit" class="submit_btn btn" onclick="myFunc();">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
+
+<script>
+    function myFunc() {
+        document.getElementById('insert_form').submit();
+    }
+</script>

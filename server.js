@@ -1,11 +1,7 @@
-const express = require('express')
-const moment = require('moment')
-const app = express()
-const pool = require('./pggres_db')
-const i_log = require('./valids/student')
-const check_spk = require('./valids/s_valid_sign');
+const express = require('express');
+const app = express();
+const pool = require('./pggres_db');
 const bodyParser = require('body-parser');
-const { result } = require('@hapi/joi/lib/base');
 
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
@@ -239,7 +235,7 @@ app.post('/s_signin', async(req,res) => {
         len1 = parseInt(len1.rows[0].max);
         const qury = `INSERT INTO pms2.student_info VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13);`;
         await pool.query(qury, [len1+parseInt(1), req.body.fname, req.body.mname, req.body.lname, req.body.email, req.body.passwd, req.body.cpi, req.body.weight, req.body.height, req.body.dob, req.body.street, req.body.city, req.body.pin]);
-        //await pool.query(`INSERT INTO pms2.student_phoneno VALUES($1, $2);`,[len1+parseInt(1), req.body.phone]);
+        await pool.query(`INSERT INTO pms2.student_phoneno VALUES($1, $2);`,[len1+parseInt(1), req.body.phone]);
         res.status(304).redirect('/home');
     } catch (err) {
         console.error(err.message);
@@ -311,6 +307,21 @@ app.post('/delete_student', async (req, res)=>{
         await pool.query(qury, [req.body.id]);
         await pool.query(`DELETE FROM pms2.student_phoneno WHERE student_id=${req.body.id}`);
         res.status(304).redirect('/home');
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//custom query
+app.get('/custom', (req,res)=>{
+    res.status(200).render('custom/custom');
+});
+
+app.post('/custom', async(req,res)=>{
+    try {
+        console.log(req.body);
+        const qry = await pool.query(req.body.qury);
+        res.status(200).render('custom/custom_res', {data: qry.rows});
     } catch (err) {
         console.error(err.message);
     }
