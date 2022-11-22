@@ -2,46 +2,48 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/index_css.css" type="text/css">
-    <link rel="stylesheet" href="css/title_css.css" type="text/css">
-    <link rel="stylesheet" href="css/form_css.css" type="text/css">
-    <link rel="stylesheet" href="css/table_css.css" type="text/css">
-    <title>Student Info</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/index_css.css" type="text/css">
+  <link rel="stylesheet" href="css/title_css.css" type="text/css">
+  <link rel="stylesheet" href="css/form_css.css" type="text/css">
+  <link rel="stylesheet" href="css/table_css.css" type="text/css">
+  <title>Student Info</title>
 </head>
 
 <body style="background-image: url('/imgs/table_bg.jpg'); background-attachment: fixed;">
-    <!--Nav bar-->
-    <%- include('../partials/header_log.ejs') %>
+  <!--Nav bar-->
+  <%- include('../partials/header_log.ejs') %>
 
     <div class="tbl">
-        <% let col = []; %>
-        <% for (let i = 0; i < data.length; i++) { %>
-        <% for (let key in data[i]) { %>
-            <% if (col.indexOf(key) === -1) { %>
-            <% col.push(key); %>
-            <% } %>
-        <% } %>
-        <% } %>
+      <% let col=[]; %>
+        <% for (let i=0; i < data.length; i++) { %>
+          <% for (let key in data[i]) { %>
+            <% if (col.indexOf(key)===-1) { %>
+              <% col.push(key); %>
+                <% } %>
+                  <% } %>
+                    <% } %>
 
-        <table>
-            <% col.forEach(thead => {  %>
-                <th>
-                    <%= thead %>
-                </th>
-            <% }); %>
-            <% data.forEach(element => { %>
-                <tr>
-                    <% col.forEach(cd => {  %>
-                        <td>
-                            <%= element[cd] %>
-                        </td>
-                    <% }); %>
-                </tr>
-            <% }); %>
-        </table>
+                      <div class="scroll_it">
+                        <table>
+                          <% col.forEach(thead=> { %>
+                            <th>
+                              <%= thead %>
+                            </th>
+                            <% }); %>
+                              <% data.forEach(element=> { %>
+                                <tr>
+                                  <% col.forEach(cd=> { %>
+                                    <td>
+                                      <%= element[cd] %>
+                                    </td>
+                                    <% }); %>
+                                </tr>
+                                <% }); %>
+                        </table>
+                      </div>
     </div>
 </body>
 
@@ -90,5 +92,5 @@
     const divShowData = document.getElementById('showData');
     divShowData.innerHTML = "";
     divShowData.appendChild(table);
-}
+  }
 </script>

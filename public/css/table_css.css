@@ -1,6 +1,7 @@
 table, th, td{
     border: 1px solid rgb(255, 255, 255);
     border-collapse: collapse;
+    white-space: nowrap;
 }
 
 table{
@@ -10,6 +11,16 @@ table{
     padding: 2%;
     color:white;
     width:100%;
+}
+
+.scroll_it{
+    overflow-x:auto;
+    scroll-behavior: smooth;
+    padding-right: 5%;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-bottom: 5%;
+    border: 4px white solid;
 }
 
 .tbl{

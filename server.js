@@ -302,7 +302,6 @@ app.post('/s_edit', async(req,res) => {
 
 app.post('/delete_student', async (req, res)=>{
     try {
-        console.log(req.body);
         const qury = `DELETE FROM pms2.student_info WHERE student_id = $1`;
         await pool.query(qury, [req.body.id]);
         await pool.query(`DELETE FROM pms2.student_phoneno WHERE student_id=${req.body.id}`);
