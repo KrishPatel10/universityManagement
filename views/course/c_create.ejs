@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/title_css.css" type="text/css">
+    <link rel="stylesheet" href="css/form_css.css" type="text/css">
+    <link rel="stylesheet" href="css/btn_css.css" type="text/css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../partials/header_log.ejs') %>
+
+    <div class="Form_Div">
+        <div class="form_title">Basic Info</div>
+        <hr class="hr_form">
+        <form action="/c_create" method="post" id="insert_form" class="insrt_form">
+
+            <!--Middle Name-->
+
+            <label for="cname" class="form_text">
+                Course Name
+            </label>
+            <br>
+            <input type="text" class="course_ip ip" name="name" id="name" required>
+            <br>
+            <!--Last Name-->
+
+            <label for="credit" class="form_text">
+                Credit
+            </label>
+            <br>
+            <input type="number" class="credit_ip ip"  name="credit" id="credit" min="0" max="10"required>
+            <br>
+            <button class="btn submit_btn" onclick="myFunc();">
+                Submit
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function myFunction(){
+        document.getElementById("insert_form").submit();
+    }
+</script>

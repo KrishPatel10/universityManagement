@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_css.css" type="text/css">
+    <link rel="stylesheet" href="css/title_css.css" type="text/css">
+    <link rel="stylesheet" href="css/form_css.css" type="text/css">
+    <link rel="stylesheet" href="css/table_css.css" type="text/css">
+    <title>Employee Info</title>
+</head>
+
+<body style="background-image: url('/imgs/table_bg.jpg'); background-attachment: fixed;">
+    <!--Nav bar-->
+    <%- include('../partials/header_log.ejs') %>
+
+        <% if(data.results.length> 0) { %>
+            <div class="tbl s_tbl">
+                <table>
+                    <th>
+                        Course ID
+                    </th>
+                    <th>
+                        Course Name
+                    </th>
+                    <th>
+                        Credit
+                    </th>
+                    <% data.results.forEach(element=> {%>
+                        <tr>
+                            <td>
+                                <%= element.course_id %>
+                            <td>
+                                <%= element.course_name %>
+                            </td>
+                            <td>
+                                <%= element.credit %>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </table>
+                <div class="btn">
+                    <% if(data.prev) {%>
+                        <div class="prev bt">
+                            <% var str = `all_courses?page=${data.prev.page}&limit=${data.prev.limit}` %>
+                            <a href= <%=str%> > << PREV</a>
+                        </div>
+                    <% } %>
+                    <% if(data.next) { %>
+                        <div class="next bt">
+                            <% var str = `all_courses?page=${data.next.page}&limit=${data.next.limit}` %>
+                            <a href= <%=str%> >NEXT >> </a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+
+
+</body>
+
+</html>
