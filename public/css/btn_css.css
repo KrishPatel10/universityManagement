@@ -1,10 +1,64 @@
 
 .submit_btn{
-    background-color: rgb(41, 218, 41);
-    color:white;
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
     padding: 2% 5% 2% 5%;
-    border-radius: 20%;
+    border-radius: 25px;
+    margin: 4px 2px;
+    margin-top: 6%;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
 }
+
+.submit_btn:hover{
+    background-color: rgb(9, 255, 4);
+    color: white;
+}
+
+.edit_btn{
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+    padding: 2% 5% 2% 5%;
+    border-radius: 25px;
+    margin: 4px 2px;
+    margin-top: 6%;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.edit_btn:hover{
+    background-color: rgb(9, 255, 4);
+    color: white;
+}
+
+.delete_btn{
+    background-color: white;
+    color: black;
+    border: 2px solid #ff0000;
+    padding: 2% 5% 2% 5%;
+    border-radius: 25px;
+    margin: 4px 2px;
+    margin-top: 6%;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.delete_btn:hover{
+    background-color: rgb(255, 4, 4);
+    color: white;
+}
+
 
 .bck_btn{
     margin-block-start: 5%;
