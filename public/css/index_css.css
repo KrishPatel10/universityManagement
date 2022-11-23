@@ -3,6 +3,7 @@
 body{
     background-image: url("/imgs/doodle_bg.jpg");
     background-size: 100%;
+    background-attachment: fixed;
     margin:0px;
 }
 

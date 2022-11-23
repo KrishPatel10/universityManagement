@@ -247,7 +247,7 @@ app.post('/a_login', (req, res) => {
 
 //admin choices to show
 app.get('/a_choice', (req, res) => {
-    if (uid == 0 && clas != "admin") {
+    if (uid == 0 && clas == "admin") {
         res.status(200).render('admin/choice.ejs');
     } else {
         res.send("You dont have access to do that!");

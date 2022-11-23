@@ -81,21 +81,23 @@
                 <div class="btn">
                     <% if(data.prev) {%>
                         <div class="prev bt">
-                            <% var str = `all_employees?page=${data.prev.page}&limit=${data.prev.limit}` %>
-                            <a href= <%=str%> > << PREV</a>
+                            <% var str=`all_employees?page=${data.prev.page}&limit=${data.prev.limit}` %>
+                                <a href=<%=str%> > << PREV</a>
                         </div>
-                    <% } %>
-                    <% if(data.next) { %>
-                        <div class="next bt">
-                            <% var str = `all_employees?page=${data.next.page}&limit=${data.next.limit}` %>
-                            <a href= <%=str%> >NEXT >> </a>
-                        </div>
-                    <% } %>
+                        <% } %>
+                            <% if(data.next) { %>
+                                <div class="next bt">
+                                    <% var str=`all_employees?page=${data.next.page}&limit=${data.next.limit}` %>
+                                        <a href=<%=str%> >NEXT >> </a>
+                                </div>
+                                <% } %>
                 </div>
             </div>
             <% } %>
 
 
 </body>
+
+<%- include('../partials/footer.ejs') %>
 
 </html>
