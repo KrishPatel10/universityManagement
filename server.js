@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const pool = require('./pggres_db');
 const bodyParser = require('body-parser');
+const { json } = require('body-parser');
 
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
@@ -15,7 +16,7 @@ var clas = "";
 app.get("/all_students", async (req, res) => {
     if (clas == "admin") {
         try {
-            const allstd = await pool.query('SELECT * FROM pms2.student_info ORDER BY student_id ASC;');
+            const allstd = await pool.query('SELECT * FROM pms.student_info ORDER BY student_id ASC;');
 
             let page = 1;
             let limit = 20;
@@ -59,7 +60,7 @@ app.get("/all_students", async (req, res) => {
 app.get("/all_courses", async (req, res) => {
     if (clas == "admin") {
         try {
-            const allstd = await pool.query('SELECT * FROM pms2.course ORDER BY course_id ASC;');
+            const allstd = await pool.query('SELECT * FROM pms.course ORDER BY course_id ASC;');
 
             let page = 1;
             let limit = 20;
@@ -102,7 +103,7 @@ app.get("/all_courses", async (req, res) => {
 app.get("/all_employees", async (req, res) => {
     if (clas == "admin") {
         try {
-            const allstd = await pool.query('SELECT * FROM pms2.employee_info ORDER BY employee_id ASC;');
+            const allstd = await pool.query('SELECT * FROM pms.employee_info ORDER BY employee_id ASC;');
 
             let page = 1;
             let limit = 20;
@@ -156,9 +157,13 @@ app.get('/home', (req, res) => {
     }
 });
 
+app.get('/create', (req, res) => {
+    res.redirect('/home');
+})
+
 //student sign in done by admin
 app.get('/s_signin_basic', (req, res) => {
-    if (clas = "admin") {
+    if (clas == "admin") {
         res.status(200).render('student/s_signin_basic.ejs');
     } else {
         res.send("You don't have access to do that!!!");
@@ -167,7 +172,7 @@ app.get('/s_signin_basic', (req, res) => {
 
 //instructor sign in basic done by admin
 app.get('/i_signin_basic', (req, res) => {
-    if (clas = "admin") {
+    if (clas == "admin") {
         res.status(200).render('instructor/i_signin_basic.ejs');
     } else {
         res.send("You don't have access to do that!!!");
@@ -187,10 +192,12 @@ app.post('/c_create', async (req, res) => {
     // res.status(200).render('course/c_create.ejs')
     if (clas = "admin") {
         try {
-            var len1 = await pool.query(`SELECT max(course_id) FROM pms2.course;`)
+            console.log(req.body);
+            var len1 = await pool.query(`SELECT max(course_id) FROM pms.course;`)
+            if(len1.rows[0].max == null) len1.rows[0].max = 0;
             len1 = parseInt(len1.rows[0].max);
-            const qury = `INSERT INTO pms2.course VALUES($1, $2, $3)`;
-            await pool.query(qury, [len1 + 1, req.body.name, req.body.credit])
+            const qury = `INSERT INTO pms.course VALUES($1, $2, $3, $4)`;
+            await pool.query(qury, [len1+1, req.body.name, (new Date().getFullYear()), req.body.credit]);
             res.status(304).redirect('/home');
         } catch (err) {
             console.error(err.message);
@@ -257,7 +264,7 @@ app.get('/a_choice', (req, res) => {
 //instructor login
 app.post('/i_login', async (req, res) => {
     try {
-        const allstd = await pool.query(`SELECT * FROM pms2.employee_info WHERE employee_id = ${req.body.i_id}`);
+        const allstd = await pool.query(`SELECT * FROM pms.employee_info WHERE employee_id = ${req.body.i_id}`);
 
         if (allstd.rows.length > 0) {
             allstd.rows[0].joining_date = (allstd.rows[0].joining_date).toISOString().slice(0, 10);
@@ -279,9 +286,9 @@ app.post('/i_login', async (req, res) => {
 
 //edit employee for employee
 app.get('/i_edit', async (req, res) => {
-    if (clas == "admin" && (clas = "i" && uid != 0)) {
+    if (clas != "admin" && (clas = "i" && uid != 0)) {
         try {
-            const allstd = await pool.query(`SELECT * FROM pms2.employee_info WHERE employee_id = ${req.query.id}`);
+            const allstd = await pool.query(`SELECT * FROM pms.employee_info WHERE employee_id = ${req.query.id}`);
 
             if (allstd.rows.length > 0) {
                 allstd.rows[0].joining_date = (allstd.rows[0].joining_date).toISOString().slice(0, 10);
@@ -299,17 +306,17 @@ app.get('/i_edit', async (req, res) => {
 });
 
 app.post('/i_edit', async (req, res) => {
-    if (clas == "admin" && (clas = "i" && uid != 0)) {
+    if (clas != "admin" && (clas == "i" && uid != 0)) {
         try {
             console.log(req.body);
-            const qury = `UPDATE pms2.employee_info 
+            const qury = `UPDATE pms.employee_info 
         SET employee_email = $1, 
         street = $2, 
         city = $3, 
         pincode=$4 
         WHERE employee_id=$5`;
             await pool.query(qury, [req.body.email, req.body.street, req.body.city, req.body.pincode, req.body.id]);
-            const allstd = await pool.query(`SELECT * FROM pms2.employee_info WHERE employee_id=${req.body.id}`);
+            const allstd = await pool.query(`SELECT * FROM pms.employee_info WHERE employee_id=${req.body.id}`);
             allstd.rows[0].joining_date = (allstd.rows[0].joining_date).toISOString().slice(0, 10);
             allstd.rows[0].date_of_birth = (allstd.rows[0].date_of_birth).toISOString().slice(0, 10);
             res.status(200).render('instructor/i_info.ejs', { data: allstd.rows[0] });
@@ -323,12 +330,12 @@ app.post('/i_edit', async (req, res) => {
 
 app.post('/delete_employee', async (req, res) => {
 
-    if (clas == "admin" && (clas = "i" && uid != 0)) {
+    if (clas != "admin" && (clas = "i" && uid != 0)) {
         try {
             console.log(req.body);
-            const qury = `DELETE FROM pms2.employee_info WHERE employee_id = $1`;
+            const qury = `DELETE FROM pms.employee_info WHERE employee_id = $1`;
             await pool.query(qury, [req.body.id]);
-            await pool.query(`DELETE FROM pms2.employee_phoneno WHERE employee_id=${req.body.id}`);
+            await pool.query(`DELETE FROM pms.employee_phoneno WHERE employee_id=${req.body.id}`);
             res.status(304).redirect('/home');
         } catch (err) {
             console.error(err.message);
@@ -339,13 +346,15 @@ app.post('/delete_employee', async (req, res) => {
 });
 
 app.post('/i_signin', async (req, res) => {
-    if (clas == "admin" && (clas = "i" && uid != 0)) {
+    if (clas == "admin" || (clas = "i" && uid != 0)) {
         try {
-            var len1 = await pool.query(`SELECT max(employee_id) FROM pms2.employee_info;`)
-            len1 = parseInt(len1.rows[0].max);
-            const qury = `INSERT INTO pms2.employee_info(employee_id, employee_fname, employee_mname, employee_lname, employee_email, employee_login_password, joining_date, salary, date_of_birth, street, city, pincode) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`;
-            await pool.query(`INSERT INTO pms2.employee_info VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12);`, [len1 + parseInt(1), req.body.fname, req.body.mname, req.body.lname, req.body.email, req.body.passwd, req.body.jd, req.body.salary, req.body.dob, req.body.street, req.body.city, req.body.pin])
-            await pool.query(`INSERT INTO pms2.employee_phoneno VALUES($1, $2);`, [len1 + 1, req.body.phone]);
+            // console.log(req.body);
+            var len1 = await pool.query(`SELECT max(employee_id) FROM pms.employee_info;`)
+            if(len1.rows[0].max == null) len1.rows[0].max = 0;
+            len1 = parseInt(len1.rows[0].max) + 1;
+            // const qury = `INSERT INTO pms.employee_info(employee_id, employee_fname, employee_mname, employee_lname, employee_email, employee_login_password, joining_date, salary, date_of_birth, street, city, pincode) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`;
+            await pool.query(`INSERT INTO pms.employee_info VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12);`, [len1, req.body.fname, req.body.mname, req.body.lname, req.body.email, req.body.passwd, req.body.jd, req.body.salary, req.body.dob, req.body.street, req.body.city, req.body.pin])
+            await pool.query(`INSERT INTO pms.employee_phoneno VALUES($1, $2);`, [len1, req.body.phone]);
             res.status(304).redirect('/home');
         } catch (err) {
             console.error(err.message);
@@ -356,13 +365,15 @@ app.post('/i_signin', async (req, res) => {
 });
 
 app.post('/s_signin', async (req, res) => {
-    if (clas == "admin" && (clas = "s" && uid != 0)) {
+    if (clas == "admin" || (clas = "s" && uid != 0)) {
         try {
-            var len1 = await pool.query(`SELECT max(student_id) FROM pms2.student_info;`)
-            len1 = parseInt(len1.rows[0].max);
-            const qury = `INSERT INTO pms2.student_info VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13);`;
+            var len1 = await pool.query(`SELECT max(student_id) FROM pms.student_info;`)
+            if(len1.rows[0].max == null) len1.rows[0].max = 0;
+            len1 = parseInt(len1.rows[0].max) + 1;
+            const qury = `INSERT INTO pms.student_info VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13);`;
+            console.log(req.body);
             await pool.query(qury, [len1 + parseInt(1), req.body.fname, req.body.mname, req.body.lname, req.body.email, req.body.passwd, req.body.cpi, req.body.weight, req.body.height, req.body.dob, req.body.street, req.body.city, req.body.pin]);
-            await pool.query(`INSERT INTO pms2.student_phoneno VALUES($1, $2);`, [len1 + parseInt(1), req.body.phone]);
+            await pool.query(`INSERT INTO pms.student_phoneno VALUES($1, $2);`, [len1, req.body.phone]);
             res.status(304).redirect('/home');
         } catch (err) {
             console.error(err.message);
@@ -380,7 +391,7 @@ app.post('/s_signin', async (req, res) => {
 app.post('/s_login', async (req, res) => {
     if (clas != "admin" && uid == 0) {
         try {
-            const allstd = await pool.query(`SELECT * FROM pms2.student_info WHERE student_id = ${req.body.s_id}`);
+            const allstd = await pool.query(`SELECT * FROM pms.student_info WHERE student_id = ${req.body.s_id}`);
 
             if (allstd.rows.length > 0) {
                 allstd.rows[0].date_of_birth = (allstd.rows[0].date_of_birth).toISOString().slice(0, 10);
@@ -406,7 +417,7 @@ app.post('/s_login', async (req, res) => {
 app.get('/s_edit', async (req, res) => {
     if (clas == "admin" || (clas == "s" && uid != 0)) {
         try {
-            const allstd = await pool.query(`SELECT * FROM pms2.student_info WHERE student_id = ${req.query.id}`);
+            const allstd = await pool.query(`SELECT * FROM pms.student_info WHERE student_id = ${req.query.id}`);
 
             if (allstd.rows.length > 0) {
                 allstd.rows[0].date_of_birth = (allstd.rows[0].date_of_birth).toISOString().slice(0, 10);
@@ -425,14 +436,14 @@ app.get('/s_edit', async (req, res) => {
 app.post('/s_edit', async (req, res) => {
     if (clas == "admin" || (clas == "s" && uid != 0)) {
         try {
-            const qury = `UPDATE pms2.Student_info 
+            const qury = `UPDATE pms.Student_info 
             SET student_email = $1, 
             street = $2, 
             city = $3, 
             pincode=$4 
             WHERE student_id=$5`;
             await pool.query(qury, [req.body.email, req.body.street, req.body.city, req.body.pincode, req.body.id]);
-            const allstd = await pool.query(`SELECT * FROM pms2.student_info WHERE student_id=${req.body.id}`);
+            const allstd = await pool.query(`SELECT * FROM pms.student_info WHERE student_id=${req.body.id}`);
             allstd.rows[0].date_of_birth = (allstd.rows[0].date_of_birth).toISOString().slice(0, 10);
             res.status(200).render('student/s_info.ejs', { data: allstd.rows[0] });
         } catch (err) {
@@ -447,9 +458,9 @@ app.post('/s_edit', async (req, res) => {
 app.post('/delete_student', async (req, res) => {
     if (clas == "admin" || (clas == "s" && uid != 0)) {
         try {
-            const qury = `DELETE FROM pms2.student_info WHERE student_id = $1`;
+            const qury = `DELETE FROM pms.student_info WHERE student_id = $1`;
             await pool.query(qury, [req.body.id]);
-            await pool.query(`DELETE FROM pms2.student_phoneno WHERE student_id=${req.body.id}`);
+            await pool.query(`DELETE FROM pms.student_phoneno WHERE student_id=${req.body.id}`);
             res.status(304).redirect('/home');
         } catch (err) {
             console.error(err.message);
@@ -482,5 +493,9 @@ app.post('/custom', async (req, res) => {
     }
 });
 
+const makeStr = (str) => {
+    str = "{" + str + "}";
+    return str;
+}
 
 app.listen(5000);

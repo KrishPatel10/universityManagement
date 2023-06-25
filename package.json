@@ -8,8 +8,8 @@
     "pg": "^8.8.0"
   },
   "scripts": {
-    "devStart": "nodemon server.js",
-    "start": "node server.js"
+    "devstart": "nodemon server.js",
+    "start": "nodemon server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

@@ -22,35 +22,35 @@
           <% for (let key in data[i]) { %>
             <% if (col.indexOf(key)===-1) { %>
               <% col.push(key); %>
-                <% } %>
-                  <% } %>
-                    <% } %>
+            <% } %>
+          <% } %>
+        <% } %>
 
-                      <div class="scroll_it">
-                        <table>
-                          <% col.forEach(thead=> { %>
-                            <th>
-                              <%= thead %>
-                            </th>
-                            <% }); %>
-                              <% data.forEach(element=> { %>
-                                <tr>
-                                  <% col.forEach(cd=> { %>
-                                    <td>
-                                      <%= element[cd] %>
-                                    </td>
-                                    <% }); %>
-                                </tr>
-                                <% }); %>
-                        </table>
-                      </div>
+        <div class="scroll_it">
+          <table>
+            <% col.forEach(thead=> { %>
+              <th>
+                <%= thead %>
+              </th>
+              <% }); %>
+                <% data.forEach(element=> { %>
+                  <tr>
+                    <% col.forEach(cd=> { %>
+                      <td>
+                        <%= element[cd] %>
+                      </td>
+                      <% }); %>
+                  </tr>
+                  <% }); %>
+          </table>
+        </div>
     </div>
     
     <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>
-
+<!-- 
 <script>
   let tableFromJson = () => {
     // the json data.
@@ -96,3 +96,5 @@
     divShowData.appendChild(table);
   }
 </script>
+
+-->
